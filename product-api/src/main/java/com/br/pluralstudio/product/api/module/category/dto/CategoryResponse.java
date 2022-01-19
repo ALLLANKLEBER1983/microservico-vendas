@@ -7,7 +7,7 @@ import org.springframework.beans.BeanUtils;
 @Data
 public class CategoryResponse {
 
-    private Long id;
+    private Integer id;
     private String description;
 
     public static CategoryResponse of(Category category){

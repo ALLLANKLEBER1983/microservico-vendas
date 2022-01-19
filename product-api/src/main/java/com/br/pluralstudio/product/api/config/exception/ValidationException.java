@@ -1,4 +1,4 @@
-package com.br.pluralstudio.product.api.module.category.config;
+package com.br.pluralstudio.product.api.config.exception;
 
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.ResponseStatus;

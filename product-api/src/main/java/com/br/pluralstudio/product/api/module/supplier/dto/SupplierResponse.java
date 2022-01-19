@@ -8,7 +8,7 @@ import org.springframework.beans.BeanUtils;
 @Data
 public class SupplierResponse {
 
-    private Long id;
+    private Integer id;
     private String name;
 
     public static SupplierResponse of(Supplier supplier){
