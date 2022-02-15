@@ -19,14 +19,15 @@ import static org.springframework.util.ObjectUtils.isEmpty;
 @Service
 public class JwtService {
 
-    private static final String BEARER = "bearer ";
+    private static final String EMPTY_SPACE = "";
+    private static final Integer TOKEN_INDEX = 1;
 
     @Value("${app-config.secrets.api-secret}")
     private String apiSecret;
 
     public void validateAuthorization(String token){
+        var accessToken = extractToken(token);
         try {
-            var accessToken = extractToken(token);
             var clains = Jwts
                     .parserBuilder()
                     .setSigningKey(Keys.hmacShaKeyFor(apiSecret.getBytes()))
@@ -49,8 +50,8 @@ public class JwtService {
         if(isEmpty(token)){
             throw new AuthorizationException("The access token was not informed");
         }
-        if(token.toLowerCase().contains(BEARER)){
-            return token.replace(BEARER, Strings.EMPTY);
+        if(token.contains(EMPTY_SPACE)){
+            return token.split(EMPTY_SPACE)[TOKEN_INDEX];
         }
         return token;
 
